@@ -1,0 +1,21 @@
+---
+
+- name: ensure kernel module bonding
+  lineinfile: state=present backup=yes dest=/etc/modules line=bonding
+
+- name:  ensure kernel module loop
+  lineinfile: state=present backup=yes dest=/etc/modules line=loop
+
+- name:  ensure kernel module lp
+  lineinfile: state=present backup=yes dest=/etc/modules line=lp
+
+- name:  ensure kernel module rtc
+  lineinfile: state=present backup=yes dest=/etc/modules line=rtc
+
+- name:  ensure kernel module bonding
+  lineinfile: state=present backup=yes dest=/etc/modules line=bonding
+
+- name: create bond configuration file
+  template: backup=yes src=pizza_slice.cfg dest=/tmp/pizza_slice.cfg
+
+    

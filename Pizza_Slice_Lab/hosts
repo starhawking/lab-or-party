@@ -1,0 +1,5 @@
+localhost ansible_connection=local
+
+[pizza_slice]
+pizza ansible_user=lab ansible_become=yes
+slice ansible_user=lab ansible_become=yes
