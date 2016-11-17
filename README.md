@@ -5,8 +5,12 @@ This repo contains various automation that I use for my home lab.
 
 My lab can be finiky.
 I don't like rebuilding it.
+
 Rebuilding it means I'm not testing on it.
-I like automating things. Automation makes my life easier. Automation helps keep me from getting distracted.
+
+I like automating things. 
+
+Automation makes my life easier. I like making my life easier.
 
 # Lab Architecture
 My lab is currently based around a pair of somewhat similar HP(E?) DL380 G6's. They are available via iLO2 and have an extra pair of patch cables between them to create a slightly faster network between them. The disks in them are frequently configured in a Raid-0. I value a responsive lab that allows me to iterate faster over a reliable lab. There are usually a pair of disks in a Raid-1 for the root partition to make things a little bit less fragile.
