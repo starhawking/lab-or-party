@@ -13,7 +13,7 @@ My lab is currently based around a pair of somewhat similar HP(E?) DL380 G6's. T
 
 As for the naming scheme, well, I absolutely adore pizza, but it was mainly an uncreative reference to it being a [Pizza Box Form Factor](https://en.wikipedia.org/wiki/Pizza_box_form_factor). Slice just seemed like a good name when I brought the second node on-line.
 
-### Speak up sunny, we've got some pizza to eat!
+### Step up sunny, we've got some pizza to eat!
 ![Stack of SparcStations](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Sparcstack.jpg/220px-Sparcstack.jpg)
 
 Seriously though, I might as well be 12. I can't adaquiately underscore my enthuisiasm for pizza.
