@@ -1,7 +1,27 @@
 # Notes for dealing with the iLO2
 Specifically on the DL380 G6
 
-## iLO2 CLI Reference Material
+## iLO2 CLI
+
+### Dealing with Virtual Media
+```
+</>hpiLO-> cd /map1/oemhp_vm1/cddr1
+</map1/oemhp_vm1/cddr1>hpiLO-> set oemhp_image=http://sto:sto@192.168.98.2/ISO/mini.iso
+</map1/oemhp_vm1/cddr1>hpiLO-> show
+</map1/oemhp_vm1/cddr1>hpiLO-> set oemhp_boot=connected
+</map1/oemhp_vm1/cddr1>hpiLO-> set oemhp_boot=disconnect
+```
+
+### Various Power Commands
+```
+</-> power reset
+</-> power off
+</-> power on
+</-> power warm
+```
+
+
+### iLO2 CLI Reference Material
 http://h50146.www5.hpe.com/lib/products/software/oe/linux/mainstream/support/doc/general/mgmt/hponcfg/lights-out1.70guide.pdf
 
 ## Fix for SSH'ing to the iLO
