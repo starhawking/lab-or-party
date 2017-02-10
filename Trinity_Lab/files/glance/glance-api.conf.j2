@@ -1,0 +1,30 @@
+[DEFAULT]
+use_syslog = True
+use_syslog_rfc_format = True
+syslog_log_facility = LOG_LOCAL2
+use_stderr = False
+verbose=True
+debug=False
+default_log_levels = amqp=WARN,amqplib=WARN,boto=WARN,iso8601=WARN,keystonemiddleware=WARN,oslo.messaging=INFO,oslo_messaging=INFO,qpid=WARN,requests.packages.urllib3.connectionpool=WARN,requests.packages.urllib3.util.retry=WARN,routes.middleware=WARN,sqlalchemy=WARN,stevedore=WARN,suds=INFO,taskflow=WARN,urllib3.connectionpool=WARN,urllib3.util.retry=WARN,websocket=WARN
+
+amqp_durable_queues = False
+notification_driver = noop
+
+auth_region = RegionOne
+os_region_name = RegionOne
+
+show_image_direct_url = True
+registry_host = {{ internal_vip }}
+registry_port = 9191
+registry_client_protocol = http
+
+[database]
+sqlite_db = /var/lib/glance/glance.sqlite
+
+[glance_stores]
+stores = filesystem, http
+default_store = filesystem
+
+filesystem_store_datadir = /var/lib/glance/images
+
+

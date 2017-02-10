@@ -1,4 +1,4 @@
 export OS_TENANT_NAME='admin'
-export OS_USERNAME='admin'
-export OS_PASSWORD='admin'
-export OS_AUTH_URL='http://{{ internal_vip}}:5000/v2.0/'
+export OS_USERNAME='{{ keystone_admin_user }}'
+export OS_PASSWORD='{{ keystone_admin_pass }}'
+export OS_AUTH_URL='http://{{ internal_vip}}:35357/v2.0/'
