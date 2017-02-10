@@ -1,6 +1,6 @@
-- hosts: localhost
+- hosts: workstation
   tasks:
-    - name: Install Packages
+    - name: Install emacs
       become: true
       apt:
         name: "{{ item }}"
@@ -10,14 +10,27 @@
         - emacs24-nox
         - yaml-mode
         - emacs-goodies-el
-        - git
 
-    - name: Create emacsrc.d
+    - name: Install Personal Package Preferences
+      become: true
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - git
+        - htop
+        - curl
+        - whois
+        - mtr
+        - python
+        - tmux
+
+    - name: Create emacs.d
       file:
         path: '{{ansible_env.HOME}}/.emacs.d'
         state: directory
 
     - name: Create emacs init file
-      file:
+      template:
         src: files/emacs_init.el
         dest: '{{ansible_env.HOME}}/.emacs.d/init.el'
