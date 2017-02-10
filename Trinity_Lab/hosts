@@ -1,4 +1,11 @@
 localhost ansible_connection=local
 
 [openstack-hosts]
-10.40.166.53 ansible_user=ubuntu ansible_become=yes
+10.157.25.229 ansible_user=ubuntu ansible_become=yes
+
+[openstack-hosts:vars]
+internal_vip=localhost
+admin_vip=localhost
+public_vip=localhost
+keystone_admin_user=admin
+keystone_admin_pass=admin
