@@ -29,6 +29,6 @@
         auth: "{{auth_creds}}"
         state: present
         role: admin
-        project: admin
+        project: service
         user: "{{ service_user }}"
         
