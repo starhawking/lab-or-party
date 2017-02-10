@@ -4,7 +4,7 @@ use_syslog_rfc_format = True
 syslog_log_facility = LOG_LOCAL2
 use_stderr = False
 verbose=True
-debug=False
+debug=True
 default_log_levels = amqp=WARN,amqplib=WARN,boto=WARN,iso8601=WARN,keystonemiddleware=WARN,oslo.messaging=INFO,oslo_messaging=INFO,qpid=WARN,requests.packages.urllib3.connectionpool=WARN,requests.packages.urllib3.util.retry=WARN,routes.middleware=WARN,sqlalchemy=WARN,stevedore=WARN,suds=INFO,taskflow=WARN,urllib3.connectionpool=WARN,urllib3.util.retry=WARN,websocket=WARN
 
 amqp_durable_queues = False
@@ -19,7 +19,8 @@ registry_port = 9191
 registry_client_protocol = http
 
 [database]
-sqlite_db = /var/lib/glance/glance.sqlite
+#sqlite_db = /var/lib/glance/glance.sqlite
+connection = sqlite:////var/lib/glance/glance.db
 
 [glance_stores]
 stores = filesystem, http
@@ -27,4 +28,10 @@ default_store = filesystem
 
 filesystem_store_datadir = /var/lib/glance/images
 
+[keystone_authtoken]
+auth_uri = http://{{ internal_vip }}:5000/
+identity_uri = http://{{ admin_vip }}:35357/
+admin_user = glance
+admin_password = glance_password
+admin_tenant_name = services
 

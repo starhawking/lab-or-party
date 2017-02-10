@@ -47,3 +47,8 @@
         state: restarted
 
 - include: service_identity.yml service_user=glance
+
+- hosts: openstack-hosts
+  tasks:
+    - name: Bootstrap Glance DB
+      command: glance-manage db_sync

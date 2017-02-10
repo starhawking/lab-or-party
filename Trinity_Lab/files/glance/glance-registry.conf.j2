@@ -4,7 +4,7 @@ use_syslog_rfc_format = True
 syslog_log_facility = LOG_LOCAL2
 use_stderr = False
 verbose=True
-debug=False
+debug=True
 default_log_levels = amqp=WARN,amqplib=WARN,boto=WARN,iso8601=WARN,keystonemiddleware=WARN,oslo.messaging=INFO,oslo_messaging=INFO,qpid=WARN,requests.packages.urllib3.connectionpool=WARN,requests.packages.urllib3.util.retry=WARN,routes.middleware=WARN,sqlalchemy=WARN,stevedore=WARN,suds=INFO,taskflow=WARN,urllib3.connectionpool=WARN,urllib3.util.retry=WARN,websocket=WARN
 
 amqp_durable_queues = False
@@ -17,11 +17,11 @@ os_region_name = RegionOne
 sqlite_db = /var/lib/glance/glance.sqlite
 
 [keystone_authtoken]
-# auth_uri = http://{{ internal_vip }}:5000/
-# identity_uri = http://{{ admin_vip }}:35357/
-# admin_user = glance
-# admin_password = glance_password
-# admin_tenant_name = services
+auth_uri = http://{{ internal_vip }}:5000/
+identity_uri = http://{{ admin_vip }}:35357/
+admin_user = glance
+admin_password = glance_password
+admin_tenant_name = services
 
 [paste_deploy]
 #flavor = keystone
