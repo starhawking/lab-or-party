@@ -1,0 +1,49 @@
+- hosts: openstack-hosts
+  tasks:
+    - name: Add Ubuntu Cloud Keyring
+      apt:
+        name: ubuntu-cloud-keyring
+        state: present
+
+    - name: Add Ubuntu Cloud Archive Newton PPA
+      apt_repository:
+        repo: "deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/newton main"
+        state: present
+
+    - name: Install Glance Packages
+      apt: update_cache=yes state=present name="{{item}}"
+      with_items:
+        - python-glance
+        - glance
+        - python-glanceclient
+        - python-openstackclient
+        
+    - name: Apply Glance API Configuration
+      template:
+        src: files/glance/glance-api.conf.j2
+        dest: /etc/glance/glance-api.conf
+
+    - name: Ensure the images directory exists
+      file:
+        path: /var/lib/glance/images
+        state: directory
+        owner: glance
+        group: glance
+
+    - name: Apply Glance Registry Configuration
+      template:
+        src: files/glance/glance-registry.conf.j2
+        dest: /etc/glance/glance-registry.conf
+        
+
+    - name: Restart Glance API Server
+      service:
+        name: glance-api
+        state: restarted
+
+    - name: Restart Glance Registry Server
+      service:
+        name: glance-registry
+        state: restarted
+
+- include: service_identity.yml service_user=glance
