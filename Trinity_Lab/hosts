@@ -1,7 +1,7 @@
 localhost ansible_connection=local
 
 [openstack-hosts]
-10.157.25.229 ansible_user=ubuntu ansible_become=yes
+10.157.25.30 ansible_user=ubuntu ansible_become=yes
 
 [openstack-hosts:vars]
 internal_vip=localhost
@@ -10,3 +10,4 @@ public_vip=localhost
 keystone_admin_user=admin
 keystone_admin_pass=admin
 auth_creds={auth_url: "http://{{ internal_vip }}:35357/v2.0/", username: "{{ keystone_admin_user }}",password: "{{ keystone_admin_pass }}", project_name: "admin"}
+rabbit_host=10.157.25.30
