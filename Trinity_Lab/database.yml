@@ -1,0 +1,4 @@
+- hosts: database
+  tasks:
+    - name: Install mariadb
+      include: mariadb.yml

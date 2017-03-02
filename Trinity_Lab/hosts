@@ -18,3 +18,6 @@ lab-container02 ansible_user=ubuntu ansible_become=yes
 
 [rabbit]
 lab-container03 ansible_user=ubuntu ansible_become=yes
+
+[database:vars]
+db_root_password=zoBYq9plLtRDTWk

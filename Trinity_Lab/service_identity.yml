@@ -1,34 +1,23 @@
----
-- hosts: openstack-hosts
-  vars:
-    auth_creds:
-      auth_url: "http://{{ internal_vip }}:35357/v2.0/"
-      username: "{{ keystone_admin_user }}"
-      password: "{{ keystone_admin_pass }}"
-      project_name: "admin"
+- name: Ensure python-shade is installed
+  apt: state=present name=python-shade
 
-  tasks:
-    - name: Ensure python-shade is installed
-      apt: state=present name=python-shade
+- name: Ensure service project exists
+  os_project:
+    auth: "{{auth_creds}}"
+    state: present
+    name: service
+  
+- name: Create user
+  os_user:
+    state: present
+    name: "{{ service_user }}"
+    auth: "{{ auth_creds }}"
+    password: "{{service_user}}"
 
-    - name: Ensure service project exists
-      os_project:
-        auth: "{{auth_creds}}"
-        state: present
-        name: service
-      
-    - name: Create user
-      os_user:
-        state: present
-        name: "{{ service_user }}"
-        auth: "{{ auth_creds }}"
-        password: "{{service_user}}-password"
-
-    - name: Assign admin role to service user
-      os_user_role:
-        auth: "{{auth_creds}}"
-        state: present
-        role: admin
-        project: service
-        user: "{{ service_user }}"
-        
+- name: Assign admin role to service user
+  os_user_role:
+    auth: "{{auth_creds}}"
+    state: present
+    role: admin
+    project: service
+    user: "{{ service_user }}"

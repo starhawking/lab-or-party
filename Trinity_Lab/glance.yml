@@ -1,4 +1,6 @@
 - hosts: openstack-hosts
+  vars_files:
+    - auth_vars.yml
   tasks:
     - name: Add Ubuntu Cloud Keyring
       apt:
@@ -46,9 +48,7 @@
         name: glance-registry
         state: restarted
 
-- include: service_identity.yml service_user=glance
+    - include: service_identity.yml service_user=glance
 
-- hosts: openstack-hosts
-  tasks:
     - name: Bootstrap Glance DB
       command: glance-manage db_sync
