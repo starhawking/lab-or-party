@@ -1,0 +1,6 @@
+[submodule "labstack/ansible-roles-openstack"]
+	path = labstack/ansible-roles-openstack
+	url = https://github.com/starhawking/ansible-roles-openstack
+[submodule "labstack/ansible-role-lxd"]
+	path = labstack/ansible-role-lxd
+	url = https://github.com/starhawking/ansible-role-lxd

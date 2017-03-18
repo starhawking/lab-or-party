@@ -1,0 +1,10 @@
+---
+# Prepare labstack
+
+- hosts: lab_hosts
+  roles:
+    - lxd
+
+- hosts: openstack
+  roles:
+    - openstack-infra
