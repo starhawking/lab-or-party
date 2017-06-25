@@ -1,4 +1,4 @@
 localhost ansible_connection=local
 
-[workstation]
-localhost
+[workstations]
+Feynman ansible_host=192.168.88.27 ansible_user=shi ansible_become=yes

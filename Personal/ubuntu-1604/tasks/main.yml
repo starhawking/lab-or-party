@@ -1,0 +1,56 @@
+- name: Install Ubuntu HWE Kernel
+  apt:
+    name: linux-generic-hwe-16.04
+    state: present
+    update_cache: yes
+    
+- name: Apt Dist-Upgrade
+  apt:
+    upgrade: dist
+
+- apt:
+    name: "software-properties-common"
+    state: present
+    
+- name: Add Ansible PPA
+  apt_repository:
+    repo: 'ppa:ansible/ansible'
+
+- name: Install Useful Tools
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - htop
+    - mtr
+    - build-essential
+    - git
+    - ansible
+    
+- name: Install Emacs
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - emacs24-nox
+    - yaml-mode
+    - emacs-goodies-el
+    - git
+
+- name: Create emacsrc.d
+  become: true
+  become_user: "{{ personal_username }}"
+  file:
+    owner: "{{ personal_username }}"
+    path: '~/.emacs.d'
+    state: directory
+
+- name: Create emacs init file
+  become: true
+  become_user: "{{ personal_username }}"
+  copy:
+    owner: "{{ personal_username }}"
+    src: emacs_init.el
+    dest: "~/.emacs.d/init.el"

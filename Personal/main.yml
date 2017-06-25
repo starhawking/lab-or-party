@@ -1,0 +1,5 @@
+- hosts: workstations
+  roles:
+    - needs-python2
+    - ubuntu-1604
+    - ubuntu-1604-desktop
