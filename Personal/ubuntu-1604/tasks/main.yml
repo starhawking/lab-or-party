@@ -27,6 +27,7 @@
     - build-essential
     - git
     - ansible
+    - whois
     
 - name: Install Emacs
   apt:
