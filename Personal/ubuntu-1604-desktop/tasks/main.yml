@@ -32,3 +32,18 @@
     - spotify-client
     - slack-desktop
     - chromium-browser
+
+- name: Personal Directory Structure
+  become: true
+  become_user: "{{ personal_username }}"
+  file:
+    owner: "{{ personal_username }}"
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "~/Projects"
+    - "~/Tickets"
+    - "~/.bashrc.d"
+    - "~/Pictures"
+    - "~/Pictures/GIF"
+    - "~/Pictures/ScreenShots"
