@@ -1,40 +1,28 @@
-- hosts: openstack-hosts
-  tasks:
-    - name: Add Ubuntu Cloud Keyring
-      apt:
-        name: ubuntu-cloud-keyring
-        state: present
+- name: Add Keystone Packages
+  apt: update_cache=yes state=present name="{{ item }}"
+  with_items:
+    - python-keystone
+    - keystone
+    - python-keystoneclient
+    - python-openstackclient
 
-    - name: Add Ubuntu Cloud Archive Newton PPA
-      apt_repository:
-        repo: "deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/newton main"
-        state: present
+- name: Add Keystone Config
+  template:
+    src: files/keystone/keystone.conf.j2
+    dest: /etc/keystone/keystone.conf
 
-    - name: Add Keystone Packages
-      apt: update_cache=yes state=present name="{{ item }}"
-      with_items:
-        - python-keystone
-        - keystone
-        - python-keystoneclient
-        - python-openstackclient
+- name: Add catalog templates
+  template:
+    src: files/keystone/catalog.templates.j2
+    dest: /etc/keystone/catalog.templates
+    backup: yes
 
-    - name: Add Keystone Config
-      template:
-        src: files/keystone/keystone.conf.j2
-        dest: /etc/keystone/keystone.conf
+- name: Restart Apache for Keystone
+  service:
+    name: apache2
+    state: restarted
 
-    - name: Add catalog templates
-      template:
-        src: files/keystone/catalog.templates.j2
-        dest: /etc/keystone/catalog.templates
-        backup: yes
-
-    - name: Restart Apache for Keystone
-      service:
-        name: apache2
-        state: restarted
-
-    - name: Create simple Keystonerc
-      template:
-        src: files/keystone/keystonerc.j2
-        dest: '{{ ansible_env.HOME }}/keystonerc'
+- name: Create simple Keystonerc
+  template:
+    src: files/keystone/keystonerc.j2
+    dest: '{{ ansible_env.HOME }}/keystonerc'
