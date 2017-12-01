@@ -1,0 +1,18 @@
+- name: Install Virtualization Tools
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - qemu-kvm
+    - virt-manager
+    - virt-viewer
+    - libvirt-bin
+    - libvirt0
+    - virt-goodies
+    - virtinst
+    - python3-libvirt
+    - python-libvirt
+    - uvtool
+    - uvtool-libvirt
+    - lxd

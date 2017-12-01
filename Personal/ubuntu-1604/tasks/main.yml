@@ -1,13 +1,4 @@
-- name: Install Ubuntu HWE Kernel
-  apt:
-    name: linux-generic-hwe-16.04
-    state: present
-    update_cache: yes
-    
-- name: Apt Dist-Upgrade
-  apt:
-    upgrade: dist
-
+---
 - apt:
     name: "software-properties-common"
     state: present
@@ -16,6 +7,12 @@
   apt_repository:
     repo: 'ppa:ansible/ansible'
 
+- name: Ensure Ansible Installed
+  apt:
+    name: ansible
+    state: present
+    update_cache: yes
+    
 - name: Install Useful Tools
   apt:
     name: "{{ item }}"
@@ -28,7 +25,14 @@
     - git
     - ansible
     - whois
-    
+    - sqlite3
+    - tmux
+
+- name: Ensure OpenSSH Server Installed
+  apt:
+    name: openssh-server
+    state: present
+
 - name: Install Emacs
   apt:
     name: "{{ item }}"

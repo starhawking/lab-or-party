@@ -1,0 +1,7 @@
+---
+- name: Install Ubuntu HWE Kernel
+  apt:
+    name: linux-generic-hwe-16.04
+    state: present
+    update_cache: yes
+    

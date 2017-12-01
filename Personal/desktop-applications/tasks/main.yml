@@ -1,10 +1,4 @@
 ---
-- name: Install Ubuntu Desktop HWE Stack
-  apt:
-    name: xserver-xorg-hwe-16.04
-    state: present
-    update_cache: yes
-
 - name: Add Slack Repo GPG key
   apt_key:
     url: "https://packagecloud.io/slacktechnologies/slack/gpgkey"
@@ -33,17 +27,3 @@
     - slack-desktop
     - chromium-browser
 
-- name: Personal Directory Structure
-  become: true
-  become_user: "{{ personal_username }}"
-  file:
-    owner: "{{ personal_username }}"
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "~/Projects"
-    - "~/Tickets"
-    - "~/.bashrc.d"
-    - "~/Pictures"
-    - "~/Pictures/GIF"
-    - "~/Pictures/ScreenShots"

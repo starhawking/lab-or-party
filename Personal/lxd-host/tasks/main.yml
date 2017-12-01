@@ -1,0 +1,22 @@
+---
+# This task will install LXD
+
+- name: Add LXD PPA
+  apt_repository:
+    repo: "ppa:ubuntu-lxc/stable"
+    state: present
+
+- name: dist-upgrade
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Add LXD Packages
+  apt:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - lxd
+    - lxd-tools
+    - python-pylxd
+    - python-pylxd-doc

@@ -1,0 +1,7 @@
+---
+- name: Install Ubuntu Desktop HWE Stack
+  apt:
+    name: xserver-xorg-hwe-16.04
+    state: present
+    update_cache: yes
+
