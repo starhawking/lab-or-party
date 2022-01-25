@@ -1,0 +1,19 @@
+- name: Keystone db_sync
+  command: keystone-manage db_sync
+  
+- name: Ensure fernet key directory exists
+  file:
+    path: /etc/keystone/fernet-keys/
+    state: directory
+    owner: keystone
+    group: keystone
+    mode: 0770
+
+- name: Setup Keystone Fernet Tokens
+  command: keystone-manage fernet_setup --keystone-user=keystone --keystone-group=keystone
+
+- name: Setup Fernet Credentials
+  command: keystone-manage credential_setup --keystone-user=keystone --keystone-group=keystone
+
+- name: Bootstrap Keystone
+  command: "keystone-manage bootstrap --bootstrap-username={{ keystone_admin_user }} --bootstrap-password={{ keystone_admin_pass }}"

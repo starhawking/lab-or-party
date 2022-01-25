@@ -1,0 +1,20 @@
+[DEFAULT]
+use_syslog = True
+use_syslog_rfc_format = True
+
+[token]
+provider = fernet
+
+[identity]
+driver = sql
+
+[database]
+connection = sqlite:////var/lib/keystone/keystone.db
+
+[fernet_tokens]
+key_repository = /etc/keystone/fernet-keys/
+max_active_keys = 5
+
+[catalog]
+template_file = catalog.templates
+driver = templated

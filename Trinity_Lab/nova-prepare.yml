@@ -1,0 +1,8 @@
+- name: Create DB and User
+  include: service_db.yml
+  vars:
+    service_name: nova
+    service_password: nova
+
+- include: service_identity.yml service_user=nova
+  include_vars: auth_vars.yml

@@ -1,0 +1,9 @@
+- name: Add Ubuntu Cloud Keyring
+  apt:
+    name: ubuntu-cloud-keyring
+    state: present
+
+- name: Add Ubuntu Cloud Archive Newton PPA
+  apt_repository:
+    repo: "deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/newton main"
+    state: present

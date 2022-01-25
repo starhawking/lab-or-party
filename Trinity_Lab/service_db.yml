@@ -1,0 +1,13 @@
+- name: Create Service DB
+  delegate_to: lab-container02
+  mysql_db:
+    name: "{{ service_name }}"
+    state: present
+    
+- name: Create Service User
+  delegate_to: lab-container02
+  mysql_user:
+    name: "{{ service_name }}"
+    password: "{{ service_password }}"
+    priv: "{{ service_name }}.*:ALL"
+    state: present

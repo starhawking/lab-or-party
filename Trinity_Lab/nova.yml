@@ -1,0 +1,30 @@
+- hosts: openstack-hosts
+  vars_files:
+    - auth_vars.yml
+  tasks:
+    - name: Add Ubuntu Cloud Keyring
+      apt:
+        name: ubuntu-cloud-keyring
+        state: present
+
+    - name: Add Ubuntu Cloud Archive Newton PPA
+      apt_repository:
+        repo: "deb http://ubuntu-cloud.archive.canonical.com/ubuntu xenial-updates/newton main"
+        state: present
+
+    - name: Add Nova Packages
+      apt: update_cache=yes state=present name="{{ item }}"
+      with_items:
+        - nova-api
+        - nova-scheduler
+        - nova-conductor
+        - nova-consoleauth
+        - nova-novncproxy
+
+    - name: Create DB and User
+      include: service_db.yml
+      vars:
+        service_name: nova
+        service_password: nova
+
+    - include: service_identity.yml service_user=nova

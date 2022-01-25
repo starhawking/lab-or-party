@@ -1,0 +1,6 @@
+- name: Install MariaDB
+  apt: state=present update_cache=yes name="{{ item }}"
+  with_items:
+    - mariadb-server
+    - mariadb-client
+    - python-mysqldb

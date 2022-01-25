@@ -1,0 +1,23 @@
+localhost ansible_connection=local
+
+[openstack-hosts]
+lab-container01 ansible_user=ubuntu ansible_become=yes
+
+[openstack-hosts:vars]
+internal_vip=localhost
+admin_vip=localhost
+public_vip=localhost
+keystone_admin_user=admin
+keystone_admin_pass=admin
+auth_creds={auth_url: "http://{{ internal_vip }}:35357/v2.0/", username: "{{ keystone_admin_user }}",password: "{{ keystone_admin_pass }}", project_name: "admin"}
+rabbit_host=10.157.25.254
+db_host=10.157.25.128
+
+[database]
+lab-container02 ansible_user=ubuntu ansible_become=yes
+
+[rabbit]
+lab-container03 ansible_user=ubuntu ansible_become=yes
+
+[database:vars]
+db_root_password=zoBYq9plLtRDTWk
